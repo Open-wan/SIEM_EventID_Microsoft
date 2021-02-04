@@ -21,18 +21,17 @@ https://docs.graylog.org/en/4.0/pages/searching/query_language.html
 	* timestamp:["2019-07-23 09:53:08.175" TO "2019-07-23 09:53:08.575"]
 
 
-Event ID  | Description
-------- | -------------
+Event ID  | Description | Syntax
+------- | ------------- | -------------------------------------
 1006	| MALWAREPROTECTION_MALWARE_DETECTED (Windows Defender)
 1007	| MALWAREPROTECTION_MALWARE_ACTION_TAKEN
 1008	| MALWAREPROTECTION_MALWARE_ACTION_FAILED
-------- | -------------
+------- | ------------- | -------------------------------------
 1102	| The audit log was cleared 
-------- | -------------
-4624 	| An account was successfully logged on (NTLM)
-        | RDP : (source:PUSERV02 OR source:PUSERV01) AND winlogbeat_event_id:4624 AND winlogbeat_event_data_LogonType:10 AND NOT winlogbeat_event_data_IpAddress:10.32.1.*
-	| template IP : ${source.winlogbeat_event_data_IpAddress}
-	| template UserName : ${source.winlogbeat_event_data_TargetUserName}
+------- | ------------- | -------------------------------------
+4624 	| An account was successfully logged on (NTLM) | RDP : (source:PUSERV02 OR source:PUSERV01) AND winlogbeat_event_id:4624 AND winlogbeat_event_data_LogonType:10 AND NOT winlogbeat_event_data_IpAddress:10.32.1.*
+4624	| | template IP : ${source.winlogbeat_event_data_IpAddress}
+	| | template UserName : ${source.winlogbeat_event_data_TargetUserName}
 4625 	| An account failed to log on (NTLM)
 	| * si > 60 events en 1 mn : (source:PUSERV02 OR source:PUSERV01) AND winlogbeat_event_id:4625
 	|	* Search within 1 minutes Execute search every 1 minutes Create Events if count() > 60
@@ -50,7 +49,7 @@ Event ID  | Description
 	| * source:SERV04 AND winlogbeat_event_id:4663	****FAIT****
 	|	* Group by Field(s) winlogbeat_event_data_SubjectUserName
 		* Execute search every 1 minutes Create Events if count() > 50
-------- | -------------
+------- | ------------- | -------------------------------------
 4698	| A Scheduled Task Was Created
 4696	| A primary token was assigned to process (Scheduled task)
 ------- | -------------
