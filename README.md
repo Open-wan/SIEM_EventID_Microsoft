@@ -29,24 +29,24 @@ Event ID  | Description | Usage : Syntax
 ------- |  | 
 1102	| The audit log was cleared | Audit Log
 ------- |  | 
-4624 	| An account was successfully logged on (NTLM) | RDP : (source:PUSERV02 OR source:PUSERV01) AND winlogbeat_event_id:4624 AND winlogbeat_event_data_LogonType:10 AND NOT winlogbeat_event_data_IpAddress:10.32.1.*
-4624	| | template IP : ${source.winlogbeat_event_data_IpAddress}
-	| | template UserName : ${source.winlogbeat_event_data_TargetUserName}
+4624 	| An account was successfully logged on (NTLM) | RDP : (source:PUSERV02 OR source:PUSERV01) AND winlogbeat_event_id:4624 AND winlogbeat_event_data_LogonType:10 AND NOT winlogbeat_event_data_IpAddress:10.10.1.*
+ 	| | template IP : ${source.winlogbeat_event_data_IpAddress}
+ 	| | template UserName : ${source.winlogbeat_event_data_TargetUserName}
 4625 	| An account failed to log on (NTLM)
-	| * si > 60 events en 1 mn : (source:PUSERV02 OR source:PUSERV01) AND winlogbeat_event_id:4625
-	|	* Search within 1 minutes Execute search every 1 minutes Create Events if count() > 60
-		* template IP : ${source.winlogbeat_event_data_IpAddress}
-		* template UserName : ${source.winlogbeat_event_data_TargetUserName}
-	| * si user admin* : (source:PUSERV02 OR source:PUSERV01) AND winlogbeat_event_id:(4625 OR 4771) AND winlogbeat_event_data_TargetUserName:admin*
-	|	* template IP : ${source.winlogbeat_event_data_IpAddress}
-		* template UserName : ${source.winlogbeat_event_data_TargetUserName}
+	| | si > 60 events en 1 mn : (source:PUSERV02 OR source:PUSERV01) AND winlogbeat_event_id:4625
+	| |	* Search within 1 minutes Execute search every 1 minutes Create Events if count() > 60
+	| |	* template IP : ${source.winlogbeat_event_data_IpAddress}
+	| |	* template UserName : ${source.winlogbeat_event_data_TargetUserName}
+	| | si user admin* : (source:PUSERV02 OR source:PUSERV01) AND winlogbeat_event_id:(4625 OR 4771) AND winlogbeat_event_data_TargetUserName:admin*
+	| |	* template IP : ${source.winlogbeat_event_data_IpAddress}
+	| |	* template UserName : ${source.winlogbeat_event_data_TargetUserName}
 4634 	| An account was logged off
-4648	| Account Login with Explicit Credentials	(Run As)
-	| * (source:PUSERV02 OR source:PUSERV01) AND winlogbeat_event_id:4648 AND winlogbeat_event_data_TargetUserName:admin*
+4648	| Account Login with Explicit Credentials (Run As)
+	| | (source:PUSERV02 OR source:PUSERV01) AND winlogbeat_event_id:4648 AND winlogbeat_event_data_TargetUserName:admin*
 	|	* template IP : ${source.winlogbeat_event_data_IpAddress}
 	|	* template UserName : ${source.winlogbeat_event_data_TargetUserName}
 4663 	| An attempt was made to access an object
-	| * source:SERV04 AND winlogbeat_event_id:4663	****FAIT****
+	| * source:SERV04 AND winlogbeat_event_id:4663
 	|	* Group by Field(s) winlogbeat_event_data_SubjectUserName
 		* Execute search every 1 minutes Create Events if count() > 50
 ------- | ------------- | -------------------------------------
