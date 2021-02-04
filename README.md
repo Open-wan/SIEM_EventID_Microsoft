@@ -2,22 +2,22 @@
 
 ### Mise en oeuvre d'un SIEM - Evènnements Windows à surveiller
 
-La bible : https://www.ultimatewindowssecurity.com/securitylog/encyclopedia/default.aspx  - automatic!
+La bible : https://www.ultimatewindowssecurity.com/securitylog/encyclopedia/default.aspx
 
 ### Syntaxe GRAYLOG:
-https://docs.graylog.org/en/4.0/pages/searching/query_language.html   - automatic!
-	Messages that include the term ssh: ssh
-	Messages that include the term ssh or login: ssh login
-	Messages that include the exact phrase ssh login: "ssh login"
-	Messages where the field type includes ssh: type:ssh
-	Messages where the field type includes ssh or login: type:(ssh OR login)
-	Messages that have the field type: _exists_:type
-	Messages that do not have the field type: NOT _exists_:type
-	Messages that match regular expression ethernet[0-9]+: /ethernet[0-9]+/
-	Wildcards: Use ? to replace a single character or * to replace zero or more characters:
-	Range queries: 	http_response_code:[500 TO 504] 	http_response_code:{400 TO 404}
-			http_response_code:>400			http_response_code:>=400		http_response_code:(>=400 AND <500)
-	timestamp:["2019-07-23 09:53:08.175" TO "2019-07-23 09:53:08.575"]
+https://docs.graylog.org/en/4.0/pages/searching/query_language.html
+Messages that include the term ssh: ssh
+Messages that include the term ssh or login: ssh login
+Messages that include the exact phrase ssh login: "ssh login"
+Messages where the field type includes ssh: type:ssh
+Messages where the field type includes ssh or login: type:(ssh OR login)
+Messages that have the field type: _exists_:type
+Messages that do not have the field type: NOT _exists_:type
+Messages that match regular expression ethernet[0-9]+: /ethernet[0-9]+/
+Wildcards: Use ? to replace a single character or * to replace zero or more characters:
+Range queries: 	http_response_code:[500 TO 504] 	http_response_code:{400 TO 404}
+		http_response_code:>400			http_response_code:>=400		http_response_code:(>=400 AND <500)
+		timestamp:["2019-07-23 09:53:08.175" TO "2019-07-23 09:53:08.575"]
 
 
 Event ID  | Description
