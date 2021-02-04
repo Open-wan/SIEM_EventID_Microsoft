@@ -26,29 +26,29 @@ Event ID  | Description | Usage : Syntax
 1006	| MALWAREPROTECTION_MALWARE_DETECTED | Windows Defender
 1007	| MALWAREPROTECTION_MALWARE_ACTION_TAKEN | Windows Defender
 1008	| MALWAREPROTECTION_MALWARE_ACTION_FAILED | Windows Defender
-------- |  | 
+------- | | 
 1102	| The audit log was cleared | Audit Log
-------- |  | 
+------- | | 
 4624 	| An account was successfully logged on (NTLM) | RDP : (source:PUSERV02 OR source:PUSERV01) AND winlogbeat_event_id:4624 AND winlogbeat_event_data_LogonType:10 AND NOT winlogbeat_event_data_IpAddress:10.10.1.*
- 	| | template IP : ${source.winlogbeat_event_data_IpAddress}
- 	| | template UserName : ${source.winlogbeat_event_data_TargetUserName}
+4624 	| | 	template IP : ${source.winlogbeat_event_data_IpAddress}
+4624 	| | 	template UserName : ${source.winlogbeat_event_data_TargetUserName}
 4625 	| An account failed to log on (NTLM)
-	| | si > 60 events en 1 mn : (source:PUSERV02 OR source:PUSERV01) AND winlogbeat_event_id:4625
-	| |	* Search within 1 minutes Execute search every 1 minutes Create Events if count() > 60
-	| |	* template IP : ${source.winlogbeat_event_data_IpAddress}
-	| |	* template UserName : ${source.winlogbeat_event_data_TargetUserName}
-	| | si user admin* : (source:PUSERV02 OR source:PUSERV01) AND winlogbeat_event_id:(4625 OR 4771) AND winlogbeat_event_data_TargetUserName:admin*
-	| |	* template IP : ${source.winlogbeat_event_data_IpAddress}
-	| |	* template UserName : ${source.winlogbeat_event_data_TargetUserName}
+4625	| | si > 60 events en 1 mn : (source:PUSERV02 OR source:PUSERV01) AND winlogbeat_event_id:4625
+4625	| |	* Search within 1 minutes Execute search every 1 minutes Create Events if count() > 60
+4625	| |	* template IP : ${source.winlogbeat_event_data_IpAddress}
+4625	| |	* template UserName : ${source.winlogbeat_event_data_TargetUserName}
+4625	| | si user admin* : (source:PUSERV02 OR source:PUSERV01) AND winlogbeat_event_id:(4625 OR 4771) AND winlogbeat_event_data_TargetUserName:admin*
+4625	| |	* template IP : ${source.winlogbeat_event_data_IpAddress}
+4625	| |	* template UserName : ${source.winlogbeat_event_data_TargetUserName}
 4634 	| An account was logged off
 4648	| Account Login with Explicit Credentials (Run As)
-	| | (source:PUSERV02 OR source:PUSERV01) AND winlogbeat_event_id:4648 AND winlogbeat_event_data_TargetUserName:admin*
-	|	* template IP : ${source.winlogbeat_event_data_IpAddress}
-	|	* template UserName : ${source.winlogbeat_event_data_TargetUserName}
+4648	| | (source:PUSERV02 OR source:PUSERV01) AND winlogbeat_event_id:4648 AND winlogbeat_event_data_TargetUserName:admin*
+4648	| |	* template IP : ${source.winlogbeat_event_data_IpAddress}
+4648	| |	* template UserName : ${source.winlogbeat_event_data_TargetUserName}
 4663 	| An attempt was made to access an object
-	| * source:SERV04 AND winlogbeat_event_id:4663
-	|	* Group by Field(s) winlogbeat_event_data_SubjectUserName
-		* Execute search every 1 minutes Create Events if count() > 50
+4663	| |* source:SERV04 AND winlogbeat_event_id:4663
+4663	| |	* Group by Field(s) winlogbeat_event_data_SubjectUserName
+4663	| |	* Execute search every 1 minutes Create Events if count() > 50
 ------- | ------------- | -------------------------------------
 4698	| A Scheduled Task Was Created
 4696	| A primary token was assigned to process (Scheduled task)
@@ -63,19 +63,19 @@ Event ID  | Description | Usage : Syntax
 ------- | -------------
 4768 	| A Kerberos authentication ticket (TGT) was requested
 4769 	| A Kerberos service ticket was requested
-	| * (source:PUSERV02 OR source:PUSERV01) AND winlogbeat_event_id:4769 AND winlogbeat_event_data_TargetUserName:admin*
+4769	| * (source:PUSERV02 OR source:PUSERV01) AND winlogbeat_event_id:4769 AND winlogbeat_event_data_TargetUserName:admin*
 ------- | -------------
 4771 	| Kerberos pre-authentication failed
 4772 	| A Kerberos authentication ticket request failed
 4773 	| A Kerberos service ticket request failed
-	| * (source:PUSERV02 OR source:PUSERV01) AND winlogbeat_event_id:4773
+4773	| |* (source:PUSERV02 OR source:PUSERV01) AND winlogbeat_event_id:4773
 ------- | -------------
 4776 	| The domain controller attempted to validate the credentials for an account
 4777 	| The domain controller failed to validate the credentials for an account
 ------- | -------------
 5829 (5805 + 5827-5831)	| ZeroLogon - connexions non sécurisées
-			|* (source:PUSERV02 OR source:PUSERV01) AND winlogbeat_event_id:5805
-			|	* Template ${source.message}
+5829 (5805 + 5827-5831)	| | (source:PUSERV02 OR source:PUSERV01) AND winlogbeat_event_id:5805
+5829 (5805 + 5827-5831)	| | Template ${source.message}
 ------- | -------------
 7030 	| Service Creation Errors
 7045 	| Service Creation
