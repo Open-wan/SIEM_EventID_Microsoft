@@ -21,13 +21,13 @@ https://docs.graylog.org/en/4.0/pages/searching/query_language.html
 	* timestamp:["2019-07-23 09:53:08.175" TO "2019-07-23 09:53:08.575"]
 
 
-Event ID  | Description | Syntax
+Event ID  | Description | Usage : Syntax
 ------- | ------------- | -------------------------------------
-1006	| MALWAREPROTECTION_MALWARE_DETECTED (Windows Defender)
-1007	| MALWAREPROTECTION_MALWARE_ACTION_TAKEN
-1008	| MALWAREPROTECTION_MALWARE_ACTION_FAILED
+1006	| MALWAREPROTECTION_MALWARE_DETECTED | Windows Defender
+1007	| MALWAREPROTECTION_MALWARE_ACTION_TAKEN | Windows Defender
+1008	| MALWAREPROTECTION_MALWARE_ACTION_FAILED | Windows Defender
 ------- |  | 
-1102	| The audit log was cleared 
+1102	| The audit log was cleared | Audit Log
 ------- |  | 
 4624 	| An account was successfully logged on (NTLM) | RDP : (source:PUSERV02 OR source:PUSERV01) AND winlogbeat_event_id:4624 AND winlogbeat_event_data_LogonType:10 AND NOT winlogbeat_event_data_IpAddress:10.32.1.*
 4624	| | template IP : ${source.winlogbeat_event_data_IpAddress}
