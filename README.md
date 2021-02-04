@@ -30,7 +30,7 @@ Event ID  | Description
 1102	| The audit log was cleared 
 ------- | -------------
 4624 	| An account was successfully logged on (NTLM)
-        | * RDP : (source:PUSERV02 OR source:PUSERV01) AND winlogbeat_event_id:4624 AND winlogbeat_event_data_LogonType:10 AND NOT winlogbeat_event_data_IpAddress:10.32.1.*
+        | RDP : (source:PUSERV02 OR source:PUSERV01) AND winlogbeat_event_id:4624 AND winlogbeat_event_data_LogonType:10 AND NOT winlogbeat_event_data_IpAddress:10.32.1.*
 	|	* template IP : ${source.winlogbeat_event_data_IpAddress}
 	|	* template UserName : ${source.winlogbeat_event_data_TargetUserName}
 4625 	| An account failed to log on (NTLM)
